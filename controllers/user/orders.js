@@ -9,11 +9,11 @@ exports.order = async (req,res)=>{
     const lng = req.query.lng
     const lat = req.query.lat
 
-const {name,address,medicinename,medicinequantity} = req.body 
+const {name,address,medicinename,medicinequantity,state} = req.body 
 
 try {
 
-    if (!name||!address||!medicinename||!medicinequantity){
+    if (!name||!address||!medicinename||!medicinequantity||!state){
 
         return res.status(406).json({
 
@@ -42,7 +42,7 @@ const NearPharmacies = await pharmacy.aggregate(
             },
             "distanceField": "distance",
             "spherical": true,
-           //"maxDistance": 5000
+            "maxDistance": 5000
         }}
     ],   
 )
@@ -82,12 +82,12 @@ if (ClosestPharmacyDoc===undefined){
 
 }
  
- await pharmacy.findOneAndUpdate({_id:ClosestPharmacyDoc._id},{$push:{orders:order}})
 
+order.owner = req.user._id;
 
- order.user = req.user._id;
+await order.save()
 
- await order.save()
+await pharmacy.findOneAndUpdate({_id:ClosestPharmacyDoc._id},{$push:{orders:order}})
 
 
  return res.status(200).json({
@@ -99,7 +99,7 @@ if (ClosestPharmacyDoc===undefined){
 
 } catch (error) {
     
-console.log(error)
+console.log(error.message)
 
 res.status(500).json({
 

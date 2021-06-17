@@ -26,12 +26,22 @@ const OrderSchema = new mongoose.Schema({
  
   },
 
-  user : {
+  owner : {
      
     type: mongoose.Schema.Types.ObjectId, 
     ref: "User", 
-    required: true }
-  
+    required: true 
+    
+  },
+
+  state :{
+
+    type : Number,
+    required:true
+  },
+ 
+},{ timestamps: true, 
+    required:true
 });
 
 const Order = mongoose.model("orders", OrderSchema);

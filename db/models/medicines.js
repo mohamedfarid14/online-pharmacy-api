@@ -26,6 +26,7 @@ const Medicine = mongoose.model('medicines',MedicineSchema);
 
 
 Medicine.insertMany([
+    
     { name: 'a', price: 20},
     { name: 'p', price: 30},
    
@@ -34,6 +35,8 @@ Medicine.insertMany([
 }).catch(function(error){
     console.log(error)      // Failure
 });
+
+
 
 module.exports = Medicine
 

@@ -58,9 +58,11 @@ const RequestSchema = new mongoose.Schema({
     type: String ,
     default:"Point", 
     required: true
-     },
+     
+  },
 
   coordinates:{
+    
     type: [Number],
     required: true
 

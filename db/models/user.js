@@ -66,13 +66,11 @@ const UserSchema = new mongoose.Schema({
 
 }, 
     
-     orders: [{ 
+     orders: [ 
        
-      type: mongoose.Schema.Types.ObjectId,
-      required:true,
-      ref: "Order" 
-    
-}],
+       { type: mongoose.Schema.Types.ObjectId, required:true, ref: "Order"},
+     
+      ],
 
   tokens :[{
 

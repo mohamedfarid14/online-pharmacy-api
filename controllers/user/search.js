@@ -11,7 +11,6 @@ try {
  
     res.status(200).json({
         
-        
         fetchedmedicines
     })
 } catch(error){
