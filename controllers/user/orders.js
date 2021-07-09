@@ -9,6 +9,8 @@ exports.order = async (req,res)=>{
     const lng = req.query.lng
     const lat = req.query.lat
 
+    
+
 const {name,address,medicinename,medicinequantity,state} = req.body 
 
 try {
@@ -83,7 +85,13 @@ if (ClosestPharmacyDoc===undefined){
 }
  
 
+
 order.owner = req.user._id;
+
+const obj = ClosestPharmacyDoc.medicines.find(o => o.name === medicinename);
+
+order.price = medicinequantity*obj.price;
+ 
 
 await order.save()
 

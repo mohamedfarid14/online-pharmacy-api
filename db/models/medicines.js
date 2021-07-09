@@ -24,14 +24,13 @@ price : {
 
 const Medicine = mongoose.model('medicines',MedicineSchema);
 
-
 Medicine.insertMany([
     
     { name: 'a', price: 20},
     { name: 'p', price: 30},
    
 ]).then(function(){
-    console.log("Data inserted")  // Success
+    console.log("test Data inserted")  // Success
 }).catch(function(error){
     console.log(error)      // Failure
 });

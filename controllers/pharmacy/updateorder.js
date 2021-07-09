@@ -1,11 +1,14 @@
 const Order = require('../../db/models/orders')
+const pharmacy = require('../../db/models/pharmacyregistration')
+
 
 
 exports.UpdateOrder = async ( req,res)=>{
 
-   
+    
+    const state = req.body.state;
     const updates= Object.keys(req.body);
-    const allowedupdates = ['name','medicinequantity','medicinename','address','state'];
+    const allowedupdates = ['name','medicinequantity','medicinename','address','state','price'];
     const isValidupdate = updates.every((update)=>{
 
           return allowedupdates.includes(update);
@@ -18,7 +21,7 @@ exports.UpdateOrder = async ( req,res)=>{
     }
 
     const orderID = req.params.id
-
+    const  id = req.pharmacyreq._id
     try {
 
       const order = await Order.findById({_id:orderID})
@@ -26,14 +29,12 @@ exports.UpdateOrder = async ( req,res)=>{
       if (!order){
 
         return res.status(404).json({
-            error : " order not found  "
+            error : " order not found "
         })
      }
 
      updates.forEach(update=>order[update]=req.body[update]);
-
      await order.save();
-
 
        res.status(200).json({
     

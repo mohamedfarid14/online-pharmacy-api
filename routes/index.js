@@ -57,7 +57,7 @@ router.patch('/phupdateorder/:id',[pharmacyAuthCtrl.Auth,pharmacyAuthCtrl.restic
 
 router.post('/users/:id',[pharmacyAuthCtrl.Auth,pharmacyAuthCtrl.restictTo('pharmacist')],GetUserCtrl.User);
 
-router.patch('/updatemedicines',[pharmacyAuthCtrl.Auth,pharmacyAuthCtrl.restictTo('pharmacist')],MedicineCtrl.showmedicine);
+router.post('/updatemedicines',[pharmacyAuthCtrl.Auth,pharmacyAuthCtrl.restictTo('pharmacist')],MedicineCtrl.showmedicine);
 
 router.get('/searchmedicine',[pharmacyAuthCtrl.Auth,pharmacyAuthCtrl.restictTo('pharmacist')],SearchMedicineCtrl.searchMed);
 
